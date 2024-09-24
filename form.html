@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="inputBox" placeholder="Type something..." />
+    <script>
+        // Get the input box
+        const inputBox = document.getElementById('inputBox');
+      
+        // When the page is loaded, check if there's any saved value in localStorage
+        window.onload = () => {
+          const savedValue = localStorage.getItem('inputValue');
+          if (savedValue) {
+            inputBox.value = savedValue; // Set the saved value to the input box
+          }
+        };
+      
+        // Save the input value to localStorage whenever the user types
+        inputBox.addEventListener('input', () => {
+          localStorage.setItem('inputValue', inputBox.value);
+        });
+      </script>
+      
+</body>
+</html>
