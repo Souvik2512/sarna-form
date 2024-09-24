@@ -27,13 +27,14 @@
           </div>
           <div class="my-2 col-md-4">
             <label for="exampleFormControlInput1" class="form-label"
-              >Emp or Distributor code</label
+              >Emp or Distributor code <span class="req"> * </span></label
               >
             <input
               type="text"
               class="form-control modalInput"
-              data-id="tab1_input1"
-              id="exampleFormControlInput1"
+              data-id="distributorCode"
+              name="distributorCode"
+              id="distributorCode"
               />
           </div>
           <div class="my-2 col-md-4">
@@ -224,7 +225,7 @@
                     <label for="exampleFormControlInput1" class="form-label"
                     >Caste <span class="req"> * </span></label
                     >
-                    <select class="form-select modalInput" name="caste" aria-label="Default select example" required>
+                    <select class="form-select modalInput" name="caste" id="caste" data-id="caste" aria-label="Default select example" required>
                     <option value="Male">General</option>
                     <option value="OBC-A">OBC-A</option>
                     <option value="OBC-B">OBC-B</option>
@@ -259,8 +260,9 @@
                     <input
                     type="text"
                     class="form-control modalInput"
-                    data-id="tab1_input1"
-                    id="exampleFormControlInput1"
+                    data-id="shgDetails"
+                    name="shgDetails"
+                    id="shgDetails"
                     />
                 </div>
                 </div>
@@ -436,6 +438,7 @@
                   type="text"
                   class="form-control modalInput"
                   data-id="iibfCertificationNo"
+                  name="iibfCertificationNo"
                   id="iibfCertificationNo"
                   required
                   onkeypress="numberOnly(event)"
@@ -506,7 +509,7 @@
                 <label for="subdivision" class="form-label"
                   >SUB-DISTRICT/sub divition <span class="req"> * </span></label
                   >
-                  <select id="subdivisionSelect" required name="subdivision" class="form-select">
+                  <select id="subdivisionSelect" required data-id="subdivision" name="subdivision" class="form-select">
                     <option value="">Select District</option>
                 </select>
               </div>
@@ -514,7 +517,7 @@
                 <label for="area" class="form-label"
                   >Rural / Urban <span class="req"> * </span></label
                   >
-                  <select id="area" required name="area" class="form-select">
+                  <select id="area" required name="area" data-id="area" class="form-select">
                     <option value="rural">Rural</option>
                     <option value="urban"> Urban</option>
                  </select>
@@ -528,6 +531,7 @@
                   class="form-control modalInput"
                   data-id="pinCode"
                   id="pinCode"
+                  name="pinCode"
                   maxlength="6"
                   required
                   onkeypress="numberOnly(event)"
@@ -542,6 +546,7 @@
                   class="form-control modalInput"
                   data-id="VillageName"
                   id="VillageName"
+                  name="VillageName"
                   required
                   onkeypress="charOnly(event)"
                   />
@@ -555,6 +560,7 @@
                   class="form-control modalInput"
                   data-id="villageCode"
                   id="villageCode"
+                  name="villageCode"
                   maxlength="6"
                   required
                   onkeypress="numberOnly(event)"
@@ -569,6 +575,7 @@
                   class="form-control modalInput"
                   data-id="attachPVR"
                   id="attachPVR"
+                  name="attachPVR"
                   required
                   />
                   <div class="text-danger mt-2" style="display: none;"></div>
@@ -582,13 +589,14 @@
                   class="form-control modalInput"
                   data-id="attachIibfCertification"
                   id="attachIibfCertification"
+                  name="attachIibfCertification"
                   required
                   />
                   <div class="text-danger mt-2" style="display: none;"></div>
               </div>
               <div class="my-2 col-md-3">
                 <label for="attachOtherCertificate" class="form-label"
-                  >attach last certificate</label
+                  >Attach Other certificate</label
                   >
                 <input
                   type="file"
@@ -642,6 +650,20 @@
                   <div class="text-danger mt-2" style="display: none;"></div>
               </div>
               <div class="my-2 col-md-3">
+                <label for="attachAadhar" class="form-label"
+                  >Attach voterID <span class="req"> * </span></label
+                  >
+                <input
+                  type="file"
+                  class="form-control modalInput"
+                  data-id="attachvoterID"
+                  id="attachvoterID"
+                  name="attachvoterID"
+                  required
+                  />
+                  <div class="text-danger mt-2" style="display: none;"></div>
+              </div>
+              <div class="my-2 col-md-3">
                 <label for="attachPan" class="form-label"
                   >Attach Pan Card <span class="req"> * </span></label
                   >
@@ -673,6 +695,7 @@
                   class="form-control modalInput"
                   data-id="cspVillageName"
                   id="cspVillageName"
+                  name="cspVillageName"
                   required
                   onkeypress="charOnly(event)"
                   />
@@ -701,13 +724,14 @@
                   class="form-control modalInput"
                   data-id="nearDistance"
                   id="nearDistance"
+                  name="nearDistance"
                   />
               </div>
               <div class="my-2 col-md-3">
                 <label for="state" class="form-label"
                   >State <span class="req"> * </span></label
                   >
-                  <select id="stateSelect2" required name="cspstate" class="form-select" onchange="updateDistricts('stateSelect2', 'districtSelect2')">
+                  <select id="stateSelect2" required name="cspstate" data-id="cspstate" class="form-select" onchange="updateDistricts('stateSelect2', 'districtSelect2')">
                       <option value="">Select State</option>
                       <option value="Andhra Pradesh">Andhra Pradesh</option>
                       <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -749,7 +773,7 @@
                 <label for="district" class="form-label"
                   >District <span class="req"> * </span></label
                   >
-                  <select id="districtSelect2" required name="cspdistrict" class="form-select">
+                  <select id="districtSelect2" required data-id="cspdistrict" name="cspdistrict" class="form-select">
                       <option value="">Select District</option>
                   </select>
               </div>
@@ -778,6 +802,7 @@
                   type="text"
                   class="form-control modalInput"
                   data-id="landMark"
+                  name="landMark"
                   id="landMark"
                   />
               </div>
@@ -789,14 +814,17 @@
                   type="text"
                   class="form-control modalInput"
                   data-id="cspPincode"
+                  name="cspPincode"
                   id="cspPincode"
+                  maxlength="6"
+                  onkeypress="numberOnly()"
                   />
               </div>
               <div class="my-2 col-md-3">
                 <label for="exampleFormControlInput1" class="form-label"
                   >SSA/NON SSA <span class="req"> * </span></label
                   >
-                  <select id="area" required name="ssa" class="form-select">
+                  <select id="ssa" data-id="ssa" required name="ssa"  class="form-select">
                     <option value="ssa">SSA</option>
                     <option value="non-ssa"> NON SSA</option>
                  </select>
@@ -810,7 +838,7 @@
                   class="form-control modalInput"
                   data-id="cspPopulation"
                   name="cspPopulation"
-                  id="exampleFormControlInput1"
+                  id="cspPopulation"
                   required
                   onkeypress="numberOnly(event)"
                   />
@@ -852,6 +880,7 @@
                   class="form-control modalInput"
                   data-id="cpsLocation"
                   id="cpsLocation"
+                  name="cpsLocation"
                   required
                   />
               </div>
@@ -926,6 +955,7 @@
                   class="form-control modalInput"
                   data-id="pmsbyEnrollment"
                   id="pmsbyEnrollment"
+                  name="pmsbyEnrollment"
                   required
                   />
               </div>
@@ -943,7 +973,7 @@
                 <label for="workingforproposed" class="form-label"
                   >Whether relative of Proposed BC agent found to be working for another bank at the same location ? <span class="req"> * </span></label
                   >
-                  <select class="form-select modalInput" name="workingforanother" id="workingforanother" data-id="workingforanother" required aria-label="Default select example">
+                  <select class="form-select modalInput" name="workingforproposed" id="workingforproposed" data-id="workingforproposed" required aria-label="Default select example">
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                     
@@ -955,7 +985,7 @@
                   >
                 <input
                   type="text"
-                  class="form-control bcDetails"
+                  class="form-control modalInput"
                   data-id="bcDetails"
                   id="bcDetails"
                   name="bcDetails"
@@ -1047,7 +1077,7 @@
               </div>
               <div class="my-2 col-md-3">
                 <label for="languagesSelect" class="form-label">Languages Known <span class="req"> * </span></label>
-                <select id="languagesSelect" class="form-select" >
+                <select id="languagesSelect" data-id="languageName" name="languageName" class="form-select" >
                     <option value="English">English</option>
                     <option value="Hindi">Hindi</option>
                     <option value="Bengali">Bengali</option>
@@ -1064,7 +1094,7 @@
                   class="form-control modalInput"
                   data-id="cspCivilReport"
                   id="cspCivilReport"
-                  id="name"
+                  name="cspCivilReport"
                   required
                   />
               </div>
@@ -1125,9 +1155,9 @@
           </div>
         </div>
         <div class="d-flex justify-content-end">
-          <button type="button" class="btn btn-secondary close-button" data-bs-dismiss="modal">
-          Close
-          </button>
+          <a type="button" href="./index.html" class="btn btn-secondary close-button" >
+            Back
+          </a>
           <button type="submit" class="btn btn-primary submit-button ms-2">
           Save
           </button>

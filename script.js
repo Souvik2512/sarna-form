@@ -86,7 +86,7 @@ function getSelectedLanguages() {
 }
 document.querySelector('input[type="file"]').addEventListener('change', function() {
     const fileInput = this;
-    const errorMessage = fileInput.nextElementSibling; // Selects the next sibling (error message div)
+    const errorMessage = fileInput.nextElementSibling;
     const maxSizeInMB = 2;
 
     if (fileInput.files.length > 0) {
@@ -95,9 +95,9 @@ document.querySelector('input[type="file"]').addEventListener('change', function
         if (fileSizeInMB > maxSizeInMB) {
             errorMessage.textContent = `File size exceeds ${maxSizeInMB}MB. Please choose a smaller file.`;
             errorMessage.style.display = 'block';
-            fileInput.value = ''; // Clear the input
+            fileInput.value = '';
         } else {
-            errorMessage.style.display = 'none'; // Hide error message if file size is valid
+            errorMessage.style.display = 'none';
         }
     }
 });
