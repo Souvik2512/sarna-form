@@ -24,24 +24,47 @@ function charOnly(event) {
         messageElement.textContent = "";
     }
 }
-document.getElementById('submit-button').addEventListener('click', function(event) {
-    const requiredInputs = document.querySelectorAll('input[required]');
-    let allFilled = true;
-
-    requiredInputs.forEach(input => {
-        const messageElement = createErrorMessageElement(input);
+function validateField(input) {
+    const messageElement = createErrorMessageElement(input);
+    
+    if (input.tagName === "SELECT") {
         if (!input.value) {
-            allFilled = false;
+            input.classList.add("is-invalid");
+            messageElement.textContent = "Please select an option.";
+        } else {
+            input.classList.remove("is-invalid");
+            messageElement.textContent = "";
+        }
+    } else {
+        if (!input.value) {
             input.classList.add("is-invalid");
             messageElement.textContent = "This field is required.";
         } else {
             input.classList.remove("is-invalid");
             messageElement.textContent = "";
         }
+    }
+}
+
+document.querySelectorAll('input[required], select[required]').forEach(input => {
+    input.addEventListener('change', () => validateField(input)); // For select and input changes
+});
+
+document.getElementById('submit-button').addEventListener('click', function(event) {
+    const requiredInputs = document.querySelectorAll('input[required], select[required]');
+    let allFilled = true;
+
+    requiredInputs.forEach(input => {
+        validateField(input);
+        const messageElement = createErrorMessageElement(input);
+        
+        if (input.classList.contains("is-invalid")) {
+            allFilled = false;
+        }
     });
 
     if (!allFilled) {
-        event.preventDefault(); 
+        event.preventDefault(); // Prevent form submission
     }
 });
 

@@ -9,6 +9,10 @@
 	width: 6px;
 	background-color: #F5F5F5;
 }
+.heading{
+    color: #d7660a;
+    font-style: italic;
+}
 .form-label{
     white-space: nowrap;
     overflow: hidden;
@@ -95,6 +99,7 @@ div.dt-container .dt-paging .dt-paging-button.disabled, div.dt-container .dt-pag
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link {
     color: #d7660a;
     border-radius: 20px 0px 20px 0px !important;
+    border: 1px solid #d7660a;
 }
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link :hover{
     color: white;
@@ -102,6 +107,10 @@ div.dt-container .dt-paging .dt-paging-button.disabled, div.dt-container .dt-pag
 }
 .req{
     color: red;
+}
+.nav.nav-tabs{
+    background-color: #e7e6e6;
+    border-radius: 10px;
 }
 option{
     background-color: #fff !important;
