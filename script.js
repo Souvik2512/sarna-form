@@ -1,34 +1,76 @@
+function createErrorMessageElement(input) {
+    let messageElement = document.getElementById(`${input.id}Message`);
+    if (!messageElement) {
+        messageElement = document.createElement('div');
+        messageElement.className = 'text-danger mt-1';
+        messageElement.id = `${input.id}Message`;
+        input.parentNode.appendChild(messageElement);
+    }
+    return messageElement;
+}
+
 function charOnly(event) {
     const char = String.fromCharCode(event.keyCode || event.which);
     const allowedChars = /^[A-Za-z\s]+$/;
+    const input = event.target;
+    const messageElement = createErrorMessageElement(input);
     
     if (!allowedChars.test(char)) {
-        event.preventDefault(); 
-        event.target.classList.add("is-invalid"); 
+        event.preventDefault();
+        input.classList.add("is-invalid");
+        messageElement.textContent = "Only letters and spaces are allowed.";
     } else {
-        event.target.classList.remove("is-invalid"); 
+        input.classList.remove("is-invalid");
+        messageElement.textContent = "";
     }
 }
+document.getElementById('submit-button').addEventListener('click', function(event) {
+    const requiredInputs = document.querySelectorAll('input[required]');
+    let allFilled = true;
+
+    requiredInputs.forEach(input => {
+        const messageElement = createErrorMessageElement(input);
+        if (!input.value) {
+            allFilled = false;
+            input.classList.add("is-invalid");
+            messageElement.textContent = "This field is required.";
+        } else {
+            input.classList.remove("is-invalid");
+            messageElement.textContent = "";
+        }
+    });
+
+    if (!allFilled) {
+        event.preventDefault(); 
+    }
+});
+
 function numberOnly(event) {
     const char = String.fromCharCode(event.keyCode || event.which);
-    const currentValue = event.target.value;
-
-    // Allow only numbers (0-9) and limit length to 12
-    if (!/^[0-9]+$/.test(char) || currentValue.length >= 12) {
-        event.preventDefault(); // Stop the key press if it's not allowed
-        event.target.classList.add("is-invalid"); // Add error class
+    const input = event.target;
+    const messageElement = createErrorMessageElement(input);
+    
+    if (!/^[0-9]+$/.test(char)) {
+        event.preventDefault();
+        input.classList.add("is-invalid");
+        messageElement.textContent = "Only numbers are allowed.";
     } else {
-        event.target.classList.remove("is-invalid"); // Remove error class if valid
+        input.classList.remove("is-invalid");
+        messageElement.textContent = "";
     }
 }
+
 function emailOnly(input) {
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const messageElement = createErrorMessageElement(input);
     
     if (!emailPattern.test(input.value)) {
         input.classList.add("is-invalid");
+        messageElement.textContent = "Invalid email format.";
         input.setCustomValidity("Invalid email format");
     } else {
         input.classList.remove("is-invalid");
+        messageElement.textContent = "";
         input.setCustomValidity("");
     }
 }
@@ -84,31 +126,44 @@ function getSelectedLanguages() {
     const selectedValues = Array.from(select.selectedOptions).map(option => option.value);
     console.log("Selected Languages:", selectedValues);
 }
-document.querySelector('input[type="file"]').addEventListener('change', function() {
-    const fileInput = this;
+const maxSizeInMB = 2;
+
+  function validateFileInput(fileInput) {
     const errorMessage = fileInput.nextElementSibling;
-    const maxSizeInMB = 2;
-
+    
     if (fileInput.files.length > 0) {
-        const fileSizeInMB = fileInput.files[0].size / (1024 * 1024); // Convert to MB
-
-        if (fileSizeInMB > maxSizeInMB) {
-            errorMessage.textContent = `File size exceeds ${maxSizeInMB}MB. Please choose a smaller file.`;
-            errorMessage.style.display = 'block';
-            fileInput.value = '';
-        } else {
-            errorMessage.style.display = 'none';
-        }
+      const fileSizeInMB = fileInput.files[0].size / (1024 * 1024);
+      
+      if (fileSizeInMB > maxSizeInMB) {
+        errorMessage.textContent = `File size exceeds ${maxSizeInMB}MB. Please choose a smaller file.`;
+        errorMessage.style.display = 'block';
+        fileInput.value = '';
+      } else {
+        errorMessage.style.display = 'none';
+      }
     }
-});
+  }
 
-document.querySelector('form').addEventListener('submit', function(event) {
-    const fileInput = this.querySelector('input[type="file"]');
-    if (fileInput.files.length === 0) {
-        event.preventDefault();
-        alert('Please select a file before submitting.');
+  document.querySelectorAll('input[type="file"]').forEach(fileInput => {
+    fileInput.addEventListener('change', function () {
+      validateFileInput(fileInput);
+    });
+  });
+
+  document.querySelector('form').addEventListener('submit', function (event) {
+    let isFormValid = true;
+
+    document.querySelectorAll('input[type="file"]').forEach(fileInput => {
+      if (fileInput.files.length === 0) {
+        isFormValid = false;
+      }
+    });
+
+    if (!isFormValid) {
+      event.preventDefault();
+      alert('Please select all required files before submitting.');
     }
-});
+  });
 
 
     window.onload = () => {
@@ -141,6 +196,9 @@ document.querySelector('form').addEventListener('submit', function(event) {
         }, 300000);
     };
 
+  $(document).ready(function() {
+    $('.selectpicker').selectpicker();
+  });
 
 
 
