@@ -7,6 +7,7 @@
 ::-webkit-scrollbar
 {
 	width: 6px;
+    height: 4px;
 	background-color: #F5F5F5;
 }
 .heading{
@@ -19,6 +20,61 @@
     text-overflow: ellipsis;
     width: 100%;
 }
+.view-container{
+    max-width: 900px;
+}
+#detailsContainer{
+    background-color: #fbbd91bf;
+}
+.print-button{
+    float: right;
+}
+@media print {
+    #detailsContainer {
+        /* Force the background color */
+        -webkit-print-color-adjust: exact; /* For WebKit browsers */
+    }
+    
+}
+
+.section-header {
+    background-color:#0c781e;
+    color: white;
+    padding: 10px;
+    font-style: italic;
+    margin: 20px 0 10px 0;
+    border-radius: 5px;
+    }
+    .detail-group {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #efefef;
+    padding: 10px 0;
+    }
+    .detail-group:last-child {
+    border-bottom: none;
+    }
+    .detail-group label {
+    font-weight: bold;
+    width: 30%;
+    }
+    .detail-group span {
+    width: 70%;
+    }
+    .section-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    }
+    .section-image img {
+    max-width: 150px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    }
+    .back-btn {
+    margin-top: 30px;
+    }
 ::-webkit-scrollbar-thumb
 {
 	background-color: #0C5A02;
@@ -26,6 +82,10 @@
 .form-button{
     margin-left: auto !important;
     display: block;
+}
+#myTable thead{
+    background-color: #f3c59d;
+    color: #0C5A02;
 }
 .add-button{
     background-color: #3b700a;
@@ -120,15 +180,16 @@ option:hover{
     color: #0C5A02 !important;
     background-color: #000 !important;
 }
-input, select {
+input, select, .input-group {
     background-color: #7c76764f !important;
     border: 1px solid #0C5A02 !important;
     color: black !important;
+    border-radius: 7px;
 }
 input::placeholder{
     color: #8f8282 !important;
 }
-input:hover,select:hover{
+input:hover,select:hover , .input-group:hover{
    
     border: 1px solid #d7660a !important;
    
@@ -141,4 +202,19 @@ input:hover,select:hover{
     border: 1px solid #0C5A02 !important;
     color: black !important;
     padding: 0px !important;
+}
+#imagePreview{
+    
+    width: 50%;
+    margin: auto;
+    border-radius: 50%;
+    display: block;
+    aspect-ratio: 1/1;
+}
+#myTable tbody tr:nth-child(even) {
+        background-color: #d3cece;
+    
+}
+.dt-layout-table{
+    overflow: auto;
 }

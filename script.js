@@ -1,102 +1,137 @@
-function createErrorMessageElement(input) {
-    let messageElement = document.getElementById(`${input.id}Message`);
-    if (!messageElement) {
-        messageElement = document.createElement('div');
-        messageElement.className = 'text-danger mt-1';
-        messageElement.id = `${input.id}Message`;
-        input.parentNode.appendChild(messageElement);
-    }
-    return messageElement;
+function createErrorMessageElement(input, appendAfterInput) {
+  let messageElement = document.getElementById(`${input.id}Message`);
+
+  // Create a new message element if it doesn't exist
+  if (!messageElement) {
+      messageElement = document.createElement('div');
+      messageElement.className = 'text-danger mt-1';
+      messageElement.id = `${input.id}Message`;
+  }
+
+  // Append to the correct position based on appendAfterInput flag
+  if (appendAfterInput) {
+      const inputGroup = input.parentNode; // Get the input group div
+      if (inputGroup.nextSibling !== messageElement) {
+          inputGroup.parentNode.appendChild(messageElement); // Append it after the input's parent
+      }
+  } else {
+      const parentDiv = input.closest('.my-2'); // Get the nearest div
+      parentDiv.appendChild(messageElement); // Append inside the existing container
+  }
+
+  return messageElement;
 }
+
 
 function charOnly(event) {
-    const char = String.fromCharCode(event.keyCode || event.which);
-    const allowedChars = /^[A-Za-z\s]+$/;
-    const input = event.target;
-    const messageElement = createErrorMessageElement(input);
-    
-    if (!allowedChars.test(char)) {
-        event.preventDefault();
-        input.classList.add("is-invalid");
-        messageElement.textContent = "Only letters and spaces are allowed.";
-    } else {
-        input.classList.remove("is-invalid");
-        messageElement.textContent = "";
-    }
+  const char = String.fromCharCode(event.keyCode || event.which);
+  const allowedChars = /^[A-Za-z\s]+$/;
+  const input = event.target;
+  const messageElement = createErrorMessageElement(input);
+  
+  if (input.hasAttribute('required')) { // Check if the field is required
+      if (!allowedChars.test(char)) {
+          event.preventDefault();
+          input.classList.add("is-invalid");
+          messageElement.textContent = "Only letters and spaces are allowed.";
+      } else {
+          input.classList.remove("is-invalid");
+          messageElement.textContent = "";
+      }
+  }
 }
 function validateField(input) {
-    const messageElement = createErrorMessageElement(input);
-    
-    if (input.tagName === "SELECT") {
-        if (!input.value) {
-            input.classList.add("is-invalid");
-            messageElement.textContent = "Please select an option.";
-        } else {
-            input.classList.remove("is-invalid");
-            messageElement.textContent = "";
-        }
-    } else {
-        if (!input.value) {
-            input.classList.add("is-invalid");
-            messageElement.textContent = "This field is required.";
-        } else {
-            input.classList.remove("is-invalid");
-            messageElement.textContent = "";
-        }
-    }
+  const messageElement = createErrorMessageElement(input);
+  
+  if (input.hasAttribute('required')) { // Check if the field is required
+      if (input.tagName === "SELECT") {
+          if (!input.value) {
+              input.classList.add("is-invalid");
+              messageElement.textContent = "Please select an option.";
+          } else {
+              input.classList.remove("is-invalid");
+              messageElement.textContent = "";
+          }
+      } else {
+          if (!input.value) {
+              input.classList.add("is-invalid");
+              messageElement.textContent = "This field is required.";
+          } else {
+              input.classList.remove("is-invalid");
+              messageElement.textContent = "";
+          }
+      }
+  } else {
+      // If not required, clear any existing error message and class
+      input.classList.remove("is-invalid");
+      messageElement.textContent = "";
+  }
 }
 
+
+
 document.querySelectorAll('input[required], select[required]').forEach(input => {
-    input.addEventListener('change', () => validateField(input)); // For select and input changes
+  input.addEventListener('change', () => validateField(input)); // For select and input changes
 });
 
-document.getElementById('submit-button').addEventListener('click', function(event) {
-    const requiredInputs = document.querySelectorAll('input[required], select[required]');
-    let allFilled = true;
+// Submit event listener
+document.querySelector('.submit-button').addEventListener('click', function(event) {
+  const requiredInputs = document.querySelectorAll('input[required], select[required]');
+  let allFilled = true;
 
-    requiredInputs.forEach(input => {
-        validateField(input);
-        const messageElement = createErrorMessageElement(input);
-        
-        if (input.classList.contains("is-invalid")) {
-            allFilled = false;
-        }
-    });
+  requiredInputs.forEach(input => {
+      validateField(input);
+      const messageElement = createErrorMessageElement(input);
+      
+      if (input.classList.contains("is-invalid")) {
+          allFilled = false;
+      }
+  });
 
-    if (!allFilled) {
-        event.preventDefault(); // Prevent form submission
-    }
+  if (!allFilled) {
+      event.preventDefault(); 
+  }
 });
 
 function numberOnly(event) {
-    const char = String.fromCharCode(event.keyCode || event.which);
-    const input = event.target;
-    const messageElement = createErrorMessageElement(input);
-    
-    if (!/^[0-9]+$/.test(char)) {
-        event.preventDefault();
-        input.classList.add("is-invalid");
-        messageElement.textContent = "Only numbers are allowed.";
-    } else {
-        input.classList.remove("is-invalid");
-        messageElement.textContent = "";
-    }
+  const char = String.fromCharCode(event.keyCode || event.which);
+  const input = event.target;
+  const messageElement = createErrorMessageElement(input);
+  
+  if (input.hasAttribute('required')) { // Check if the field is required
+      if (!/^[0-9]+$/.test(char)) {
+          event.preventDefault();
+          input.classList.add("is-invalid");
+          messageElement.textContent = "Only numbers are allowed.";
+      } else {
+          input.classList.remove("is-invalid");
+          messageElement.textContent = "";
+      }
+  }
 }
 
+
 function emailOnly(input) {
-    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    const messageElement = createErrorMessageElement(input);
-    
-    if (!emailPattern.test(input.value)) {
-        input.classList.add("is-invalid");
-        messageElement.textContent = "Invalid email format.";
-        input.setCustomValidity("Invalid email format");
-    } else {
-        input.classList.remove("is-invalid");
-        messageElement.textContent = "";
-        input.setCustomValidity("");
-    }
+  const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const messageElement = createErrorMessageElement(input);
+  
+  if (input.hasAttribute('required')) { // Check if the field is required
+      if (!emailPattern.test(input.value)) {
+          input.classList.add("is-invalid");
+          messageElement.textContent = "Invalid email format.";
+          input.setCustomValidity("Invalid email format");
+      } else {
+          input.classList.remove("is-invalid");
+          messageElement.textContent = "";
+          input.setCustomValidity("");
+      }
+  } else {
+      // If not required, clear any existing error message and class
+      input.classList.remove("is-invalid");
+      messageElement.textContent = "";
+  }
 }
+
 const districts = {
     "Andhra Pradesh": ["Anantapur", "Chittoor", "East Godavari", "Guntur", "Krishna", "Kurnool", "Nellore", "Prakasam", "Sri Potti Sreeramulu Nellore", "West Godavari", "YSR Kadapa"],
     "Arunachal Pradesh": ["Anjaw", "Changlang", "Dibang Valley", "East Kameng", "East Siang", "Kurung Kumey", "Lohit", "Namsai", "Papum Pare", "Upper Siang", "Upper Subansiri", "West Kameng", "West Siang"],
@@ -189,40 +224,155 @@ const maxSizeInMB = 2;
   });
 
 
-    window.onload = () => {
-        const fields = document.querySelectorAll('.modalInput');
-
-        fields.forEach(field => {
-            const savedValue = localStorage.getItem(field.id);
-            if (savedValue) {
-                field.value = savedValue;
-            }
-
-            // Save input values for text inputs
-            if (field.tagName === 'INPUT') {
-                field.addEventListener('input', () => {
-                    localStorage.setItem(field.id, field.value);
-                });
-            }
-
-            // Save selected values for select elements
-            if (field.tagName === 'SELECT') {
-                field.addEventListener('change', () => {
-                    localStorage.setItem(field.id, field.value);
-                });
-            }
-        });
-        setTimeout(() => {
-            fields.forEach(field => {
-                localStorage.removeItem(field.id);
-            });
-        }, 300000);
-    };
+    
 
   $(document).ready(function() {
     $('.selectpicker').selectpicker();
   });
 
+  function previewImage(event) {
+    const imagePreview = document.getElementById('imagePreview');
+    const file = event.target.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            imagePreview.src = e.target.result; 
+            imagePreview.style.display = 'block'; 
+        };
+
+        reader.readAsDataURL(file); 
+    } else {
+        imagePreview.src = './assets/avatar.jpg'; 
+        imagePreview.style.display = 'none'; 
+    }
+}
+
+function checkRequiredFieldsFilled(tabId) {
+  const requiredFields = document.querySelectorAll(`#${tabId} input[required], #${tabId} select[required]`);
+  let allFilled = true;
+
+  requiredFields.forEach(field => {
+      if (field.tagName.toLowerCase() === 'select') {
+          if (field.value === '') {
+              allFilled = false;
+          }
+      } else {
+          if (field.value.trim() === '') {
+              allFilled = false;
+          }
+      }
+  });
+
+  const tabButton = document.getElementById(`${tabId}-tab`);
+  if (allFilled) {
+      tabButton.style.backgroundColor = '#0C5A02';
+      tabButton.style.color = '#fff';
+  } else {
+      tabButton.style.backgroundColor = '';
+      tabButton.style.color = '#d7660a';
+  }
+}
+
+const tabIds = ['tab1', 'tab2', 'tab3', 'tab4', 'tab5'];
+
+tabIds.forEach(tabId => {
+  document.querySelectorAll(`#${tabId} input[required], #${tabId} select[required]`).forEach(field => {
+      field.addEventListener('input', () => checkRequiredFieldsFilled(tabId));
+      field.addEventListener('change', () => checkRequiredFieldsFilled(tabId));
+  });
+});
+function validatePhoneNumber(input) {
+  const phoneNumber = input.value.trim();
+  const messageElement = createErrorMessageElement(input, true); // true for specific fields
+
+  messageElement.textContent = ""; // Clear previous message
+
+  // Check for specific input IDs
+  if (input.id === 'WhatsappNumber' || input.id === 'familyNumber' || input.id === 'aadharMobile' || input.id === 'referNo') {
+      if (phoneNumber.length < 10) {
+          messageElement.textContent = 'Please enter a valid 10-digit number.';
+          input.classList.add("is-invalid");
+      } else {
+          input.classList.remove("is-invalid");
+      }
+  } else {
+      // For other fields, perform different validation logic
+      if (!phoneNumber) {
+          messageElement.textContent = 'This field is required.';
+          input.classList.add("is-invalid");
+      } else {
+          input.classList.remove("is-invalid");
+      }
+  }
+}
+
+// Adding event listeners for specific fields
+['WhatsappNumber', 'familyNumber', 'aadharMobile', 'referNo'].forEach(id => {
+  document.getElementById(id).addEventListener('blur', function () {
+      validatePhoneNumber(this);
+  });
+});
+
+// Function to validate other input/select fields
+function validateOtherField(input) {
+  const messageElement = createErrorMessageElement(input, false); // false for other fields
+
+  messageElement.textContent = ""; // Clear previous message
+
+  // Example: Required field check
+  if (!input.value.trim()) {
+      messageElement.textContent = 'This field is required.';
+      input.classList.add("is-invalid");
+  } else {
+      input.classList.remove("is-invalid");
+  }
+}
+
+// Select all input and select fields except for the specific IDs
+const allFields = Array.from(document.querySelectorAll('input, select'));
+const excludedIDs = ['WhatsappNumber', 'familyNumber', 'aadharMobile', 'referNo'];
+
+// Filter the fields to exclude specific IDs
+const otherFields = allFields.filter(field => !excludedIDs.includes(field.id));
+
+// Add event listeners to the other fields
+otherFields.forEach(field => {
+  field.addEventListener('blur', function () {
+      validateOtherField(this);
+  });
+});
 
 
+  
+  window.onload = () => {
+    const fields = document.querySelectorAll('.modalInput');
+
+    fields.forEach(field => {
+        const savedValue = sessionStorage.getItem(field.id);
+        console.log(`Loaded ${field.id}: ${savedValue}`); 
+        if (savedValue) {
+            field.value = savedValue;
+        }
+
+        if (field.tagName === 'INPUT') {
+            field.addEventListener('input', () => {
+                console.log(`Saving ${field.id}: ${field.value}`);
+                sessionStorage.setItem(field.id, field.value);
+            });
+        }
+
+        if (field.tagName === 'SELECT') {
+            field.addEventListener('change', () => {
+                console.log(`Saving ${field.id}: ${field.value}`);
+                sessionStorage.setItem(field.id, field.value);
+            });
+        }
+    });
+    
+    document.querySelector('form').addEventListener('submit', () => {
+        sessionStorage.clear(); 
+    });
+};
 

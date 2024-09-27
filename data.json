@@ -1,0 +1,205 @@
+[
+    {
+      "application": {
+        "id": 12415,
+        "applicationNo": 12415,
+        "bankName": "SBI"
+      },
+      "personalDetails": {
+        "userImage": "./assets/my-image.jpeg",
+        "title": "Mr",
+        "Name": "Souvik Saha",
+        "Gender": "Male",
+        "fatherName": "Shyamal Saha",
+        "motherName": "B Saha",
+        "spouseName": "Ekhono khuje paini",
+        "caste": "General",
+        "religion": "Hindu",
+        "languages": ["Bengali", "Hindi", "English"],
+        "whatsAppNo": "7980801749",
+        "familyNo": "7980801749",
+        "shg": "Yes",
+        "shgDetails": "hi this is my shg details"
+      },
+      "kycDetails": {
+        "aadharMobile": "9831921010",
+        "aadharEmail": "sahasouvik263@gmail.com",
+        "aadharNo": "784545564589",
+        "panCard": "ILSWXXXX",
+        "voterId": "78454555XXXX"
+      },
+      "educationDetails": {
+        "matricCertificate": "9831565010",
+        "lastQualification": "10th+2",
+        "otherCertificate": "ITI",
+        "iibfCertification": "Junior Associate of Indian Institute of Bankers (JAIIB)",
+        "iibfCertificationNo": "78454555XXXX"
+      },
+      "addressDetails": {
+        "villageName": "Shantipur",
+        "villageCode": "54754",
+        "state": "West Bengal",
+        "district": "North 24 Parganas",
+        "subdivision": "Dumdum",
+        "area": "Rural",
+        "pinCode": "789415"
+      },
+      "attachmentDetails": {
+        "attachPVR": "./assets/sarna.png",
+        "attachIibfCertification": "./assets/sarna.png",
+        "attachOtherCertificate": "./assets/sarna.png",
+        "attachLastCertificate": "./assets/sarna.png",
+        "attachMatricCertificate": "./assets/sarna.png",
+        "attachAadhar": "./assets/sarna.png",
+        "attachVoterID": "./assets/sarna.png"
+      },
+      "cspLocationDetails": {
+        "cspVillageName": "Barasat",
+        "cspVillageCode": "411115",
+        "pvr": "Yes",
+        "nearDistance": "15KM",
+        "cspState": "West Bengal",
+        "cspDistrict": "North 24 Parganas",
+        "cspSubdivision": "Barrackpore",
+        "cspArea": "Rural",
+        "landMark": "Near Aadhar seva kendra",
+        "cspPinCode": "700118",
+        "ssa": "NON-SSA",
+        "cspPopulation": "125525",
+        "cspLat": "22.85",
+        "cspLong": "88.69",
+        "cpsLocation": "https://www.google.com/maps/dir/22.6328576,88.4015104/sarna+infocom/@22.628175,88.3978843,15z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x39f89e1a54e174cb:0x206d0c674faf72e0!2m2!1d88.4139995!2d22.6212062?entry=ttu&g_ep=EgoyMDI0MDkyMy4wIKXMDSoASAFQAw%3D%3D"
+      },
+      "cspAttachment": {
+        "gTagOutlatePhoto": "./assets/sarna.png",
+        "gTagPhoto": "./assets/sarna.png"
+      },
+      "enrollmentDetails": {
+        "transId": "565554",
+        "enrolDate": "25/05/2024",
+        "pmsbyEnrollment": "05/08/2024",
+        "workingForAnother": "Yes",
+        "workingForProposed": "Yes",
+        "bcDetails": "Best bc within town and top ranked"
+      },
+      "bankAndOtherDetails": {
+        "bankAccountNo": "54415215454",
+        "bankName": "SBI",
+        "bankIFSCCode": "SBI4141654",
+        "referName": "Titas",
+        "referNo": "525552525",
+        "income": "10000",
+        "cspCivilReport": "788"
+      },
+      "bankAttachmentDetails": {
+        "attachCspReport": "./assets/sarna.png",
+        "attachBankDocuments": "./assets/sarna.png"
+      },
+      "declaration": {
+        "financeExists": "Yes",
+        "acceptAcknowledge": true
+      }
+    },
+    {
+      "application": {
+        "id": 12416,
+        "applicationNo": 12416,
+        "bankName": "HDFC"
+      },
+      "personalDetails": {
+        "userImage": "./assets/sarna.png",
+        "title": "Mr",
+        "Name": "Rahul Roy",
+        "Gender": "Male",
+        "fatherName": "Ratan Roy",
+        "motherName": "K Roy",
+        "spouseName": "Unmarried",
+        "caste": "OBC",
+        "religion": "Hindu",
+        "languages": ["Bengali", "Hindi", "English"],
+        "whatsAppNo": "7980801750",
+        "familyNo": "7980801750",
+        "shg": "No",
+        "shgDetails": "Rahul's Details"
+      },
+      "kycDetails": {
+        "aadharMobile": "9831921011",
+        "aadharEmail": "rahulroy@gmail.com",
+        "aadharNo": "784545564589",
+        "panCard": "ILSWXXXX",
+        "voterId": "78454556XXXX"
+      },
+      "educationDetails": {
+        "matricCertificate": "9831565011",
+        "lastQualification": "10th+2",
+        "otherCertificate": "None",
+        "iibfCertification": "Junior Associate of Indian Institute of Bankers (JAIIB)",
+        "iibfCertificationNo": "78454556XXXX"
+      },
+      "addressDetails": {
+        "villageName": "Howrah",
+        "villageCode": "54756",
+        "state": "West Bengal",
+        "district": "Howrah",
+        "subdivision": "Howrah",
+        "area": "Urban",
+        "pinCode": "700119"
+      },
+      "attachmentDetails": {
+        "attachPVR": "./assets/sarna.png",
+        "attachIibfCertification": "./assets/sarna.png",
+        "attachOtherCertificate": "./assets/sarna.png",
+        "attachLastCertificate": "./assets/sarna.png",
+        "attachMatricCertificate": "./assets/sarna.png",
+        "attachAadhar": "./assets/sarna.png",
+        "attachVoterID": "./assets/sarna.png"
+      },
+      "cspLocationDetails": {
+        "cspVillageName": "Shibpur",
+        "cspVillageCode": "411116",
+        "pvr": "Yes",
+        "nearDistance": "10KM",
+        "cspState": "West Bengal",
+        "cspDistrict": "Howrah",
+        "cspSubdivision": "Shibpur",
+        "cspArea": "Urban",
+        "landMark": "Near Howrah bridge",
+        "cspPinCode": "700120",
+        "ssa": "SSA",
+        "cspPopulation": "155525",
+        "cspLat": "22.60",
+        "cspLong": "88.35",
+        "cpsLocation": "https://www.google.com/maps"
+      },
+      "cspAttachment": {
+        "gTagOutlatePhoto": "./assets/sarna.png",
+        "gTagPhoto": "./assets/sarna.png"
+      },
+      "enrollmentDetails": {
+        "transId": "565556",
+        "enrolDate": "26/05/2024",
+        "pmsbyEnrollment": "06/08/2024",
+        "workingForAnother": "No",
+        "workingForProposed": "Yes",
+        "bcDetails": "Efficient bc for urban operations"
+      },
+      "bankAndOtherDetails": {
+        "bankAccountNo": "54415215456",
+        "bankName": "HDFC",
+        "bankIFSCCode": "HDFC4141654",
+        "referName": "Ankit",
+        "referNo": "525552526",
+        "income": "12000",
+        "cspCivilReport": "800"
+      },
+      "bankAttachmentDetails": {
+        "attachCspReport": "./assets/sarna.png",
+        "attachBankDocuments": "./assets/sarna.png"
+      },
+      "declaration": {
+        "financeExists": "No",
+        "acceptAcknowledge": true
+      }
+    }
+  ]
+  
