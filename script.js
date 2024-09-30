@@ -1,22 +1,67 @@
+document.getElementById('samecheck').addEventListener('change', function () {
+    const isChecked = this.checked;
+
+    const villageName = document.getElementById('VillageName').value;
+    const villageCode = document.getElementById('villageCode').value;
+    const state = document.getElementById('stateSelect1').value;
+    const district = document.getElementById('districtSelect1').value;
+    const subdivision = document.getElementById('subdivision').value;
+    const area = document.getElementById('area').value;
+    const pinCode = document.getElementById('pinCode').value;
+
+    const cspVillageNameField = document.getElementById('cspVillageName');
+    const cspVillageCodeField = document.getElementById('cspvillageCode');
+    const cspStateField = document.getElementById('stateSelect2');
+    const cspDistrictField = document.getElementById('districtSelect2');
+    const cspSubdivisionField = document.getElementById('cspsubdivisionSelect');
+    const cspAreaField = document.getElementById('csparea');
+    const cspLandmarkCodeField = document.getElementById('cspPincode');
+
+    if (isChecked) {
+        // Set the values for the CSP fields
+        cspVillageNameField.value = villageName;
+        cspVillageCodeField.value = villageCode;
+        cspStateField.value = state;
+        cspSubdivisionField.value = subdivision;
+        cspAreaField.value = area;
+        cspLandmarkCodeField.value = pinCode;
+
+        // Populate the district based on the selected state
+        updateDistricts('stateSelect2', 'districtSelect2');
+
+        // Set the district value once the options are populated
+        setTimeout(() => {
+            cspDistrictField.value = district;
+        }, 100); // Slight delay to ensure district options are populated
+    } else {
+        // Clear all CSP fields
+        cspVillageNameField.value = '';
+        cspVillageCodeField.value = '';
+        cspStateField.value = '';
+        cspDistrictField.value = '';
+        cspSubdivisionField.value = '';
+        cspAreaField.value = '';
+        cspLandmarkCodeField.value = '';
+    }
+});
+
 function createErrorMessageElement(input, appendAfterInput) {
   let messageElement = document.getElementById(`${input.id}Message`);
 
-  // Create a new message element if it doesn't exist
   if (!messageElement) {
       messageElement = document.createElement('div');
       messageElement.className = 'text-danger mt-1';
       messageElement.id = `${input.id}Message`;
   }
 
-  // Append to the correct position based on appendAfterInput flag
   if (appendAfterInput) {
-      const inputGroup = input.parentNode; // Get the input group div
+      const inputGroup = input.parentNode; 
       if (inputGroup.nextSibling !== messageElement) {
-          inputGroup.parentNode.appendChild(messageElement); // Append it after the input's parent
+          inputGroup.parentNode.appendChild(messageElement);
       }
   } else {
-      const parentDiv = input.closest('.my-2'); // Get the nearest div
-      parentDiv.appendChild(messageElement); // Append inside the existing container
+      const parentDiv = input.closest('.my-2');
+      parentDiv.appendChild(messageElement); 
   }
 
   return messageElement;
@@ -29,7 +74,7 @@ function charOnly(event) {
   const input = event.target;
   const messageElement = createErrorMessageElement(input);
   
-  if (input.hasAttribute('required')) { // Check if the field is required
+  if (input.hasAttribute('required')) { 
       if (!allowedChars.test(char)) {
           event.preventDefault();
           input.classList.add("is-invalid");
@@ -43,7 +88,7 @@ function charOnly(event) {
 function validateField(input) {
   const messageElement = createErrorMessageElement(input);
   
-  if (input.hasAttribute('required')) { // Check if the field is required
+  if (input.hasAttribute('required')) { 
       if (input.tagName === "SELECT") {
           if (!input.value) {
               input.classList.add("is-invalid");
@@ -62,7 +107,6 @@ function validateField(input) {
           }
       }
   } else {
-      // If not required, clear any existing error message and class
       input.classList.remove("is-invalid");
       messageElement.textContent = "";
   }
@@ -71,10 +115,9 @@ function validateField(input) {
 
 
 document.querySelectorAll('input[required], select[required]').forEach(input => {
-  input.addEventListener('change', () => validateField(input)); // For select and input changes
+  input.addEventListener('change', () => validateField(input)); 
 });
 
-// Submit event listener
 document.querySelector('.submit-button').addEventListener('click', function(event) {
   const requiredInputs = document.querySelectorAll('input[required], select[required]');
   let allFilled = true;
@@ -98,7 +141,7 @@ function numberOnly(event) {
   const input = event.target;
   const messageElement = createErrorMessageElement(input);
   
-  if (input.hasAttribute('required')) { // Check if the field is required
+  if (input.hasAttribute('required')) { 
       if (!/^[0-9]+$/.test(char)) {
           event.preventDefault();
           input.classList.add("is-invalid");
@@ -115,7 +158,7 @@ function emailOnly(input) {
   const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const messageElement = createErrorMessageElement(input);
   
-  if (input.hasAttribute('required')) { // Check if the field is required
+  if (input.hasAttribute('required')) { 
       if (!emailPattern.test(input.value)) {
           input.classList.add("is-invalid");
           messageElement.textContent = "Invalid email format.";
@@ -126,7 +169,6 @@ function emailOnly(input) {
           input.setCustomValidity("");
       }
   } else {
-      // If not required, clear any existing error message and class
       input.classList.remove("is-invalid");
       messageElement.textContent = "";
   }
@@ -285,11 +327,10 @@ tabIds.forEach(tabId => {
 });
 function validatePhoneNumber(input) {
   const phoneNumber = input.value.trim();
-  const messageElement = createErrorMessageElement(input, true); // true for specific fields
+  const messageElement = createErrorMessageElement(input, true);
 
-  messageElement.textContent = ""; // Clear previous message
+  messageElement.textContent = ""; 
 
-  // Check for specific input IDs
   if (input.id === 'WhatsappNumber' || input.id === 'familyNumber' || input.id === 'aadharMobile' || input.id === 'referNo') {
       if (phoneNumber.length < 10) {
           messageElement.textContent = 'Please enter a valid 10-digit number.';
@@ -298,7 +339,6 @@ function validatePhoneNumber(input) {
           input.classList.remove("is-invalid");
       }
   } else {
-      // For other fields, perform different validation logic
       if (!phoneNumber) {
           messageElement.textContent = 'This field is required.';
           input.classList.add("is-invalid");
@@ -308,41 +348,53 @@ function validatePhoneNumber(input) {
   }
 }
 
-// Adding event listeners for specific fields
 ['WhatsappNumber', 'familyNumber', 'aadharMobile', 'referNo'].forEach(id => {
   document.getElementById(id).addEventListener('blur', function () {
       validatePhoneNumber(this);
   });
 });
 
-// Function to validate other input/select fields
 function validateOtherField(input) {
-  const messageElement = createErrorMessageElement(input, false); // false for other fields
-
-  messageElement.textContent = ""; // Clear previous message
-
-  // Example: Required field check
-  if (!input.value.trim()) {
-      messageElement.textContent = 'This field is required.';
-      input.classList.add("is-invalid");
-  } else {
-      input.classList.remove("is-invalid");
+    const messageElement = createErrorMessageElement(input, false); 
+  
+    messageElement.textContent = ""; 
+  
+    if (input.required && !input.value.trim()) {
+        messageElement.textContent = 'This field is required.';
+        input.classList.add("is-invalid");
+    } else {
+        input.classList.remove("is-invalid");
+    }
   }
+  function validateAge() {
+    const dobInput = document.getElementById('dob');
+    const dobValue = new Date(dobInput.value);
+    const currentDate = new Date();
+    const age = currentDate.getFullYear() - dobValue.getFullYear();
+    const monthDifference = currentDate.getMonth() - dobValue.getMonth();
+    const dayDifference = currentDate.getDate() - dobValue.getDate();
+    const adjustedAge = (monthDifference < 0 || (monthDifference === 0 && dayDifference < 0)) ? age - 1 : age;
+
+    if (adjustedAge < 18) {
+        document.getElementById('dobError').style.display = 'block';
+        dobInput.value = '';
+    } else {
+        document.getElementById('dobError').style.display = 'none';
+    }
 }
 
-// Select all input and select fields except for the specific IDs
+
 const allFields = Array.from(document.querySelectorAll('input, select'));
 const excludedIDs = ['WhatsappNumber', 'familyNumber', 'aadharMobile', 'referNo'];
 
-// Filter the fields to exclude specific IDs
 const otherFields = allFields.filter(field => !excludedIDs.includes(field.id));
 
-// Add event listeners to the other fields
 otherFields.forEach(field => {
   field.addEventListener('blur', function () {
       validateOtherField(this);
   });
 });
+
 
 
   

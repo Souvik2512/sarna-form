@@ -14,11 +14,14 @@
     color: #d7660a;
     font-style: italic;
 }
+#dt-length-0{
+    margin: 10px;
+}
 .form-label{
-    white-space: nowrap;
+    /* white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
-    width: 100%;
+    text-overflow: ellipsis; */
+    /* width: 100%; */
 }
 .view-container{
     max-width: 900px;
@@ -34,7 +37,11 @@
         /* Force the background color */
         -webkit-print-color-adjust: exact; /* For WebKit browsers */
     }
-    
+    .section-header {
+        margin-top: 0; /* Reduce top margin */
+        margin-bottom: 5px; /* Adjust bottom margin as needed */
+        padding: 5px 0; /* Adjust padding to reduce space above and below the header */
+    }
 }
 
 .section-header {
@@ -42,8 +49,15 @@
     color: white;
     padding: 10px;
     font-style: italic;
-    margin: 20px 0 10px 0;
+    margin: 10px 0 10px 0;
     border-radius: 5px;
+    
+    }
+    .head-details{
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 10px;
+        border: 1px solid #fff;
+        padding: 10px;
     }
     .detail-group {
     display: flex;
@@ -64,8 +78,9 @@
     .section-image {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     margin-bottom: 20px;
+    gap: 10px;
     }
     .section-image img {
     max-width: 150px;
