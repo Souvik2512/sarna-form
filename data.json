@@ -27,7 +27,8 @@
         "aadharEmail": "sahasouvik263@gmail.com",
         "aadharNo": "784545564589",
         "panCard": "ILSWXXXX",
-        "voterId": "78454555XXXX"
+        "voterId": "78454555XXXX",
+        "pvr" : "Yes"
       },
       "educationDetails": {
         "matricCertificate": "9831565010",
@@ -57,7 +58,7 @@
       "cspLocationDetails": {
         "cspVillageName": "Barasat",
         "cspVillageCode": "411115",
-        "pvr": "Yes",
+        
         "nearDistance": "15KM",
         "cspState": "West Bengal",
         "cspDistrict": "North 24 Parganas",
@@ -76,7 +77,8 @@
         "gTagPhoto": "./assets/sarna.png"
       },
       "enrollmentDetails": {
-        "transId": "565554",
+        "pmjjbyid": "565554",
+        "pmsbyid": "5653544",
         "enrolDate": "25/05/2024",
         "pmsbyEnrollment": "05/08/2024",
         "workingForAnother": "Yes",
@@ -129,7 +131,8 @@
         "aadharEmail": "rahulroy@gmail.com",
         "aadharNo": "784545564589",
         "panCard": "ILSWXXXX",
-        "voterId": "78454556XXXX"
+        "voterId": "78454556XXXX",
+        "pvr" : "Yes"
       },
       "educationDetails": {
         "matricCertificate": "9831565011",
@@ -159,7 +162,7 @@
       "cspLocationDetails": {
         "cspVillageName": "Shibpur",
         "cspVillageCode": "411116",
-        "pvr": "Yes",
+        
         "nearDistance": "10KM",
         "cspState": "West Bengal",
         "cspDistrict": "Howrah",
@@ -178,7 +181,8 @@
         "gTagPhoto": "./assets/sarna.png"
       },
       "enrollmentDetails": {
-        "transId": "565556",
+       "pmjjbyid": "565554",
+        "pmsbyid": "5653544",
         "enrolDate": "26/05/2024",
         "pmsbyEnrollment": "06/08/2024",
         "workingForAnother": "No",

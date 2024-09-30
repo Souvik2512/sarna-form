@@ -451,7 +451,7 @@
                             <h4>CSP Location Details</h4>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="samecheck"  />
+                            <input class="form-check-input" type="checkbox" value="" id="samecheck" />
                             <label class="form-check-label" for="flexCheckChecked">
                                 Same as Previous Address
                             </label>
@@ -466,7 +466,6 @@
                                 <input type="text" class="form-control modalInput" data-id="cspvillageCode" id="cspvillageCode" maxlength="6" required onkeypress="numberOnly(event)" />
                             </div>
 
-                           
                             <div class="my-2 col-md-4">
                                 <label for="state" class="form-label">State <span class="req"> * </span></label>
                                 <select id="stateSelect2" required name="cspstate" data-id="cspstate" class="form-select" onchange="updateDistricts('stateSelect2', 'districtSelect2')">
@@ -529,7 +528,7 @@
                                     <option value="metro">Metro</option>
                                 </select>
                             </div>
-                           
+
                             <div class="my-2 col-md-4">
                                 <label for="cspPincode" class="form-label">PIN CODE <span class="req"> * </span></label>
                                 <input type="text" class="form-control modalInput" data-id="cspPincode" name="cspPincode" id="cspPincode" maxlength="6" onkeypress="numberOnly()" />
@@ -646,7 +645,32 @@
                             </div>
                             <div class="my-2 col-md-4">
                                 <label for="exampleFormControlInput1" class="form-label">Bank Name </label>
-                                <input type="text" class="form-control modalInput" data-id="bankName" id="bankName" name="bankName" onkeypress="charOnly(event)" />
+                                <!-- <input type="text" class="form-control modalInput" data-id="bankName" id="bankName" name="bankName" onkeypress="charOnly(event)" /> -->
+                                <select class="form-select modalInput" data-id="bankName" name="bankName" required id="bankName">
+                                    <option value="">Select Bank</option>
+                                    <option value="SBI">State Bank of India (SBI)</option>
+                                    <option value="HDFC">HDFC Bank</option>
+                                    <option value="ICICI">ICICI Bank</option>
+                                    <option value="Axis">Axis Bank</option>
+                                    <option value="Kotak">Kotak Mahindra Bank</option>
+                                    <option value="PNB">Punjab National Bank (PNB)</option>
+                                    <option value="BOB">Bank of Baroda (BOB)</option>
+                                    <option value="Canara">Canara Bank</option>
+                                    <option value="IDBI">IDBI Bank</option>
+                                    <option value="IndusInd">IndusInd Bank</option>
+                                    <option value="Yes">Yes Bank</option>
+                                    <option value="Union">Union Bank of India</option>
+                                    <option value="Indian">Indian Bank</option>
+                                    <option value="BankOfIndia">Bank of India</option>
+                                    <option value="Central">Central Bank of India</option>
+                                    <option value="UCO">UCO Bank</option>
+                                    <option value="IndianOverseas">Indian Overseas Bank</option>
+                                    <option value="Syndicate">Syndicate Bank</option>
+                                    <option value="Federal">Federal Bank</option>
+                                    <option value="SouthIndian">South Indian Bank</option>
+                                    <option value="DBS">DBS Bank India</option>
+                                    <option value="RBL">RBL Bank</option>
+                                </select>
                             </div>
                             <div class="my-2 col-md-4">
                                 <label for="exampleFormControlInput1" class="form-label">IFSC Code </label>

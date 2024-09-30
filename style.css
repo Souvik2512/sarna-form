@@ -233,3 +233,57 @@ input:hover,select:hover , .input-group:hover{
 .dt-layout-table{
     overflow: auto;
 }
+.view-container{
+    font-size: 12px;
+    line-height: 1.2;
+}
+
+.view-container {
+    max-width: 800px;
+    margin: auto;
+}
+
+.section-header {
+    background-color: #0c781e;
+    color: #fff;
+    padding: 5px;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.detail-group {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.detail-group label {
+    font-weight: 600;
+}
+
+.section-image {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.section-image img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.back-btn, .printButton {
+    margin: 10px 5px;
+}
+.two-column {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.column {
+    flex: 1 1 50%; 
+    padding: 5px;
+}
