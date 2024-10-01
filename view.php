@@ -4,18 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Selectable DataTable</title>
-    <!-- jQuery library -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-    <!-- DataTables JS -->
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <!-- DataTables Select CSS and JS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.3/css/select.dataTables.min.css">
     <script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
-    <!-- Bootstrap for styling (optional) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>
 </head>
 <body>
 
@@ -87,36 +83,35 @@
                     </tbody>
                 </table>
                 <button id="getSelectedRows" class="btn btn-primary mt-3">Get Selected Rows</button>
-                <!-- Div to display selected rows data -->
                 <div id="selectedRowsDisplay" class="mt-4"></div>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <script>
     $(document).ready(function() {
-        // Initialize the DataTable
+    
         var table = $('#example').DataTable({
-            // Enable row selection
             ordering: true
         });
 
-        // Handle select/deselect all
         $('#selectAll').on('click', function() {
             var checked = this.checked;
             $('.row-select').prop('checked', checked);
         });
 
-        // Get selected rows data on button click
+        $('.row-select').on('change', function() {
+            var totalCheckboxes = $('.row-select').length;
+            var checkedCheckboxes = $('.row-select:checked').length;
+            $('#selectAll').prop('checked', totalCheckboxes === checkedCheckboxes);
+        });
+
         $('#getSelectedRows').on('click', function() {
-            var selectedData = []; // Array to hold the selected row objects
+            var selectedData = [];
 
             $('.row-select:checked').each(function() {
-                var row = $(this).closest('tr'); // Get the closest row for the checked checkbox
-                var rowData = table.row(row).data(); // Get row data
-
-                // Create an object for the selected row
+                var row = $(this).closest('tr');
+                var rowData = table.row(row).data();
                 var rowObject = {
                     firstName: rowData[1],
                     lastName: rowData[2],
@@ -128,11 +123,9 @@
                     extn: rowData[8],
                     email: rowData[9]
                 };
-
-                selectedData.push(rowObject); // Add the object to the array
+                selectedData.push(rowObject);
             });
 
-            // Display the selected data in the selectedRowsDisplay div
             var displayHtml = '<h5>Selected Rows Data:</h5><pre>' + JSON.stringify(selectedData, null, 2) + '</pre>';
             $('#selectedRowsDisplay').html(displayHtml);
         });
